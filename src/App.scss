@@ -1,0 +1,27 @@
+.app-container {
+  max-width: 1250px;
+  margin: auto;
+}
+
+.app-background {
+  background-color: #292929;
+  height: 100vh;
+  overflow: auto;
+}
+
+.app-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px !important;
+  background-color: #292929;
+}
+
+.table-cell_positive {
+  color: #26c868;
+}
+
+.table-cell_negative {
+  color: #ef4b56;
+}
