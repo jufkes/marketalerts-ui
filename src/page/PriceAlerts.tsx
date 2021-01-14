@@ -1,17 +1,15 @@
 import React from 'react';
-import MarketScannerTable from '../component/MarketScannerTable';
 import Header from '../component/Header';
 import '../App.scss';
 
-const MarketScanner = () => {
+const PriceAlerts = () => {
   return (
     <div className="app-background">
       <div className="app-container">
-        <Header title='Market Scanner' />
-        <MarketScannerTable />
+        <Header title="Price Alerts" />
       </div>
     </div>
   );
 };
 
-export default MarketScanner;
+export default PriceAlerts;

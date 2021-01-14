@@ -2,14 +2,26 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import MarketScanner from './page/MarketScanner';
 import './App.scss';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import ScannerAlerts from './page/ScannerAlerts';
+import PriceAlerts from './page/PriceAlerts';
 
 function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route path="/" component={MarketScanner} />
+          <Route exact path="/">
+            <Redirect to="/market-scanner" />
+          </Route>
+          <Route path="/market-scanner" component={MarketScanner} />
+          <Route path="/scanner-alerts" component={ScannerAlerts} />
+          <Route path="/price-alerts" component={PriceAlerts} />
         </Switch>
       </div>
     </Router>

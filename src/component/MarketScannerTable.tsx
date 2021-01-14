@@ -1,46 +1,48 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import {Form, Header, Loader, Message, Radio, Segment, Table} from 'semantic-ui-react';
-import './ScannerTable.scss';
+import React, { useState } from 'react';
+import { Form, Loader, Radio, Segment, Table } from 'semantic-ui-react';
+import './MarketScannerTable.scss';
 
-const ScannerTable: React.FC = () => {
+const MarketScannerTable: React.FC = () => {
   const [scanner, setScanner] = useState(null);
 
-  const handleScannerChange = (e: any, {value}: any) => setScanner(value);
+  const handleScannerChange = (e: any, { value }: any) => setScanner(value);
 
   return (
     <Segment inverted className="scanner-table-container">
-      <Form inverted className="scanner-radio-group">
-        <Form.Field>
-          <b>Scanners</b>
-        </Form.Field>
-        <Form.Field>
-          <Radio
-              label='10/20 EMA'
-              name='radioGroup'
-              value='ema'
+      <div className="scanner-tool-container">
+        <Form inverted className="scanner-radio-group">
+          <Form.Field>
+            <b>Scanners</b>
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label="10/20 EMA"
+              name="radioGroup"
+              value="ema"
               checked={scanner === 'ema'}
               onChange={handleScannerChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-              label='MacD'
-              name='radioGroup'
-              value='macd'
+            />
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label="MacD"
+              name="radioGroup"
+              value="macd"
               checked={scanner === 'macd'}
               onChange={handleScannerChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-              label='RSI'
-              name='radioGroup'
-              value='rsi'
+            />
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label="RSI"
+              name="radioGroup"
+              value="rsi"
               checked={scanner === 'rsi'}
               onChange={handleScannerChange}
-          />
-        </Form.Field>
-      </Form>
+            />
+          </Form.Field>
+        </Form>
+      </div>
       <Table inverted celled>
         <Table.Header>
           <Table.Row>
@@ -89,4 +91,4 @@ const ScannerTable: React.FC = () => {
   );
 };
 
-export default ScannerTable;
+export default MarketScannerTable;

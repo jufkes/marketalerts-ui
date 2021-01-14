@@ -1,0 +1,17 @@
+.scanner-table-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.scanner-tool-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.scanner-radio-group {
+  width: 130px;
+  background-color: #2b2b2b;
+  padding: 8px;
+  margin: 12px;
+}
