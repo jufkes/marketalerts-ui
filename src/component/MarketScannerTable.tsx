@@ -3,7 +3,7 @@ import { Form, Loader, Radio, Segment, Table } from 'semantic-ui-react';
 import './MarketScannerTable.scss';
 
 const MarketScannerTable: React.FC = () => {
-  const [scanner, setScanner] = useState(null);
+  const [scanner, setScanner] = useState('ema');
 
   const handleScannerChange = (e: any, { value }: any) => setScanner(value);
 
