@@ -1,9 +1,45 @@
-import React, { useState } from 'react';
-import { Form, Loader, Radio, Segment, Table } from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import {
+  Form,
+  Icon,
+  Loader,
+  Message,
+  Radio,
+  Segment,
+  Table,
+} from 'semantic-ui-react';
 import './MarketScannerTable.scss';
+import { Direction, EmaScanner } from '../model/scanner';
+import { getEmas } from '../controller/marketScannerController';
+
+const getIcon = (direction: Direction) => {
+  if (direction === Direction.BULLISH) {
+    return <Icon name="arrow up" color="green" />;
+  } else if (direction === Direction.BEARISH) {
+    return <Icon name="arrow down" color="red" />;
+  }
+  return null;
+};
 
 const MarketScannerTable: React.FC = () => {
   const [scanner, setScanner] = useState('ema');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<any>(null);
+  const [emaData, setEmaData] = useState<EmaScanner[]>([]);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    getEmas()
+      .then((emas) => {
+        setEmaData(emas);
+        setLoading(false);
+      })
+      .catch((error: any) => {
+        setError(error.response);
+        setLoading(false);
+      });
+  }, []);
 
   const handleScannerChange = (e: any, { value }: any) => setScanner(value);
 
@@ -59,34 +95,32 @@ const MarketScannerTable: React.FC = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row key={1}>
-            <Table.Cell>FOO</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-          </Table.Row>
-          <Table.Row key={2}>
-            <Table.Cell>BAR</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-            <Table.Cell>0.000123</Table.Cell>
-          </Table.Row>
+          {emaData &&
+            emaData.map((ema, idx) => (
+              <Table.Row key={idx}>
+                <Table.Cell>{ema.symbol}</Table.Cell>
+                <Table.Cell>{getIcon(ema.minute15)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.minute30)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.hour1)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.hour2)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.hour4)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.hour12)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.day1)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.week1)}</Table.Cell>
+                <Table.Cell>{getIcon(ema.month1)}</Table.Cell>
+              </Table.Row>
+            ))}
         </Table.Body>
       </Table>
 
-      <Loader active={false} inverted inline="centered" />
+      <Loader active={loading} inverted inline="centered" />
+
+      {error && (
+        <Message negative>
+          <Message.Header>Oops, something went wrong...</Message.Header>
+          <p>{error!!.data.message || error!!.data.error}</p>
+        </Message>
+      )}
     </Segment>
   );
 };
