@@ -9,9 +9,9 @@ const baseURL =
     : 'http://localhost:8080';
 
 
-export const getEmas = (): Promise<EmaScanner[]> => {
+export const getScannerData = (scanner: 'ema' | 'macd' | 'rsi'): Promise<EmaScanner[]> => {
   return axios
-    .get(`/scanner/ema`, {
+    .get(`/scanner/${scanner}`, {
       baseURL: baseURL,
     })
     .then(({ data }: AxiosResponse) => {
