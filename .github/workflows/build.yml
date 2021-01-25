@@ -1,0 +1,21 @@
+jobs:
+  build:
+    runs-on: marketalerts
+    environment: portr
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 15.6
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.6
+
+      - name: Build with yarn
+        run: yarn build
+
+      - name: Build Docker image
+        run: docker build -t portr.ctl.io/private/marketalerts-ui:1.0.1 .
+
+      - name: Publish latest image
+        run: docker push portr.ctl.io/private/marketalerts-ui:1.0.1
