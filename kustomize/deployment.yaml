@@ -21,9 +21,6 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: REACT_APP_BASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: ui-config
-              key: backendservice
+          value: marketalerts.marketalerts.svc.cluster.local:8080
         ports:
         - containerPort: 80
