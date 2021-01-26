@@ -22,7 +22,7 @@ jobs:
         run: yarn build
 
       - name: Build Docker image
-        run: docker build -t portr.ctl.io/private/marketalerts-ui:1.0.1 .
+        run: docker build -t portr.ctl.io/private/marketalerts-ui:1.0.2 .
 
       - name: Publish latest image
-        run: docker push portr.ctl.io/private/marketalerts-ui:1.0.1
+        run: docker push portr.ctl.io/private/marketalerts-ui:1.0.2
