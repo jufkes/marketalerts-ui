@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: marketalerts-appyaml
+  namespace: marketalerts
+data:
+  uiendpoint: marketalerts.marketalerts.svc.cluster.local:8080

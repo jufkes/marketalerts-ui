@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketalerts-ui
+  namespace: marketalerts-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marketalerts-ui
+  template:
+    metadata:
+      labels:
+        app: marketalerts-ui
+    spec:
+      securityContext:
+        runAsUser: 0
+      containers:
+      - name: marketalerts-ui
+        image: portr.ctl.io/private/marketalerts-ui:1.0.2
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: REACT_APP_BASE_URL
+          value: marketalerts.marketalerts.svc.cluster.local:8080
+        ports:
+        - containerPort: 80
