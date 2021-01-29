@@ -15,3 +15,7 @@ export enum Direction {
   BULLISH = 'BULLISH',
   BEARISH = 'BEARISH',
 }
+
+export interface Symbol {
+  name: string;
+}

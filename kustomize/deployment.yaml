@@ -17,7 +17,7 @@ spec:
         runAsUser: 0
       containers:
       - name: marketalerts-ui
-        image: portr.ctl.io/private/marketalerts-ui:1.0.3
+        image: portr.ctl.io/private/marketalerts-ui:1.0.4
         imagePullPolicy: IfNotPresent
         env:
         - name: REACT_APP_BASE_URL

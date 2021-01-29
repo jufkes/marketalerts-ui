@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import ScannerAlerts from './page/ScannerAlerts';
 import PriceAlerts from './page/PriceAlerts';
+import ManageSymbols from "./page/ManageSymbols";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Redirect to="/market-scanner" />
           </Route>
           <Route path="/market-scanner" component={MarketScanner} />
+          <Route path="/manage-symbols" component={ManageSymbols} />
           <Route path="/scanner-alerts" component={ScannerAlerts} />
           <Route path="/price-alerts" component={PriceAlerts} />
         </Switch>

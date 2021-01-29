@@ -1,0 +1,25 @@
+.symbol-card_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.manage-symbols_controls-container {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-symbol-input {
+  margin-right: 12px;
+  width: 180px;
+}
+
+.no-symbols {
+  font-size: 24px;
+}
+
+.manage-symbols-error-container {
+  display: flex;
+  justify-content: center;
+}
